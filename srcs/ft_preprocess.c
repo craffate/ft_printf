@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/09 17:32:55 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/10 09:21:47 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static size_t	ft_getsize(int n, int b)
 	return (size);
 }
 
-static char	*ft_llitoa_base(long long n, int b, const char spe)
+static char		*ft_llitoa_base(long long n, int b, const char spe)
 {
 	char	*s;
 	size_t	len;
 
 	len = ft_getsize(n, b);
-	if (!(s = (char *)malloc(sizeof(char) * (len + 1))))
+	if (!(s = (char *)malloc(sizeof(wchar_t) * (len + 1))))
 		return (0);
 	s[len--] = 0;
 	while (n >= b)
@@ -42,10 +42,26 @@ static char	*ft_llitoa_base(long long n, int b, const char spe)
 	return (s);
 }
 
-char	*ft_preprocess(const char spe, va_list ap)
+static wchar_t	*ft_strtowstr(const char *s)
+{
+	unsigned int	i;
+	wchar_t			*s2;
+
+	i = 0;
+	if (!(s2 = (wchar_t *)malloc(sizeof(wchar_t) * ft_strlen(s) + 1)))
+		return (NULL);
+	while (*s)
+		s2[i++] = *s++;
+	s2[i] = '\0';
+	return (s2);
+}
+
+wchar_t			*ft_preprocess(const char spe, va_list ap)
 {
 	char	*tmp;
+	wchar_t	*wtmp;
 
+	wtmp = NULL;
 	if (spe == 'd' || spe == 'i')
 		tmp = ft_llitoa_base((long long)va_arg(ap, int), 10, spe);
 	if (spe == 'u')
@@ -56,5 +72,8 @@ char	*ft_preprocess(const char spe, va_list ap)
 		tmp = ft_llitoa_base((long long)va_arg(ap, unsigned int), 16, spe);
 	if (spe == 's')
 		tmp = va_arg(ap, char *);
-	return (tmp);
+	if (spe == 'S')
+		wtmp = va_arg(ap, wchar_t *);
+	wtmp = wtmp == NULL ? ft_strtowstr(tmp) : wtmp;
+	return (wtmp);
 }

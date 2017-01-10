@@ -6,7 +6,7 @@
 /*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:46:23 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/09 12:45:42 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/10 09:25:57 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,8 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char				*ft_itoa_base(int n, int b);
 void				ft_putwchar(wchar_t c);
 void				ft_putwstr(wchar_t *s);
+size_t				ft_wstrlen(const wchar_t *s);
+wchar_t				*ft_wstrcat(wchar_t *s1, const wchar_t *s2);
+wchar_t				*ft_wstrdup(const wchar_t *s1);
 
 #endif

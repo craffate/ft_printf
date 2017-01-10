@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/09 17:33:37 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/10 06:43:33 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int			ft_savele(unsigned short i, const char *s);
 int			ft_isint(const char c);
 int			ft_isuint(const char c);
 int			ft_isdouble(const char c);
-char		*ft_preprocess(const char spe, va_list ap);
+wchar_t		*ft_preprocess(const char spe, va_list ap);
 
 #endif

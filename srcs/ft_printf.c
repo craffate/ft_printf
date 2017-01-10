@@ -6,21 +6,45 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/09 17:35:03 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/10 10:22:00 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+static const char	*ft_formatcat(wchar_t *s1, const char *format)
+{
+	size_t	i;
+	size_t	j;
+	wchar_t	*tmp;
+
+	i = 0;
+	j = 0;
+	while (format[j] && format[j] != '%')
+		j++;
+	if (!(tmp = (wchar_t *)malloc(sizeof(wchar_t) * (j + 1))))
+				return (NULL);
+	while (j > 0)
+	{
+		tmp[i++] = *format++;
+		j--;
+	}
+	tmp[i] = '\0';
+	ft_wstrcat(s1, tmp);
+	return (format);
+}
+
+int					ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		arr[3];
-	char	*s;
-	char	*tmp;
+	wchar_t	*s;
+	wchar_t	*tmp;
 
-	s = ft_strnew(1024);
+	setlocale(LC_CTYPE, "");
 	tmp = NULL;
+	if (!(s = (wchar_t *)malloc(sizeof(wchar_t) * INT_MAX)))
+		return (0);
 	va_start(ap, format);
 	while (*format)
 	{
@@ -28,14 +52,16 @@ int		ft_printf(const char *format, ...)
 		{
 			format = ft_parse(arr, format, ap);
 			tmp = ft_preprocess(*format, ap);
-		}
-		while (*format && *format != '%')
-		{
-			ft_strncat(s, format, 1);
+			ft_wstrcat(s, tmp);
 			format++;
 		}
-		format++;
+		if (*format != '%')
+			format = ft_formatcat(s, format);
 	}
+	ft_putwstr(s);
 	va_end(ap);
-	return (ft_strlen(s));
+	ft_putchar('\n');
+	ft_putstr("Final size: ");
+	ft_putnbr(ft_wstrlen(s));
+	return (ft_wstrlen(s));
 }
