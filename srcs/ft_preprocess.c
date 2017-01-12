@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 13:17:48 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 13:54:03 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,35 @@ static wchar_t	*ft_preprocessint(const char spe, va_list ap, int *arr)
 	return (s);
 }
 
+wchar_t			*ft_preprocessstr(const char spe, va_list ap, int *arr)
+{
+	char	*s;
+	wchar_t	*ws;
+
+	ws = NULL;
+	if (spe == 's' && !(arr[0] & L))
+	{
+		s = va_arg(ap, char *);
+		if (!(s == NULL))
+			ws = ft_strtowstr(s);
+		else
+		{
+			ws = ft_wstrnew(6);
+			ft_wstrcat(ws, L"(null)");
+		}
+	}
+	else if (spe == 'S' || (spe == 's' && arr[0] & L))
+	{
+		ws = va_arg(ap, wchar_t *);
+		if (ws == NULL)
+		{
+			ws = ft_wstrnew(6);
+			ft_wstrcat(ws, L"(null)");
+		}
+	}
+	return (ws);
+}
+
 wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 {
 	char	*tmp;
@@ -94,13 +123,8 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 		wtmp = ft_wstrnew(1);
 		*wtmp = va_arg(ap, wint_t);
 	}
-	if (spe == 's' && !(arr[0] & L))
-	{
-		tmp = va_arg(ap, char *);
-		wtmp = ft_strtowstr(tmp);
-	}
-	if (spe == 'S' || (spe == 's' && arr[0] & L))
-		wtmp = va_arg(ap, wchar_t *);
+	if (spe == 'S' || spe == 's')
+		wtmp = ft_preprocessstr(spe, ap, arr);
 	if (spe == '%')
 		wtmp = ft_preprocesspercent();
 	*i += ft_extrabits(wtmp);
