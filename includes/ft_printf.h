@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 09:15:54 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 10:53:02 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ wchar_t		*ft_llitoa_base(long long n, unsigned int b, const char spe);
 wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b, const char spe);
 size_t		ft_extrabits(const wchar_t *s);
 wchar_t		*ft_strtowstr(const char *s);
-wchar_t		*ft_wstrjoin_alt(const wchar_t *s1, const wchar_t *s2);
+wchar_t		*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2);
 
 #endif

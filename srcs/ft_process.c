@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 12:30:28 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 10:30:32 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 10:47:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,26 @@ static wchar_t	*ft_width(const wchar_t *s, int *arr)
 	wchar_t	*s2;
 
 	s2 = ft_wstrnew(ft_wstrlen(s) + arr[1] + 1);
-	if (!(arr[0] & MINUS))
+	if (!(arr[0] & ZERO))
 	{
-		while (ft_wstrlen(s) < (size_t)arr[1]--)
-			ft_wstrcat(s2, L" ");
-		ft_wstrcat(s2, s);
+		if (!(arr[0] & MINUS))
+		{
+			while (ft_wstrlen(s) < (size_t)arr[1]--)
+				ft_wstrcat(s2, L" ");
+			ft_wstrcat(s2, s);
+		}
+		else if (arr[0] & MINUS)
+		{
+			ft_wstrcat(s2, s);
+			while (ft_wstrlen(s) < (size_t)arr[1]--)
+				ft_wstrcat(s2, L" ");
+		}
 	}
-	else if (arr[0] & MINUS)
+	else
 	{
-		ft_wstrcat(s2, s);
 		while (ft_wstrlen(s) < (size_t)arr[1]--)
-			ft_wstrcat(s2, L" ");
+			ft_wstrcat(s2, L"0");
+		ft_wstrcat(s2, s);
 	}
 	return (s2);
 }
