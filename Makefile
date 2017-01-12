@@ -93,22 +93,32 @@ CC			=	gcc
 
 FLAGS		=	-Wall -Werror -Wextra
 
+CNONE		=	\x1b[0m
+CGREEN		=	\x1b[32m
+CWHITE		=	\x1b[97m
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(PF_OBJS)
-	ar -rc $(NAME) $(OBJS) $(PF_OBJS)
-	ranlib $(NAME)
+	@echo "$(CGREEN)[Started compilation process]$(CNONE)"
+	@ar -rc $(NAME) $(OBJS) $(PF_OBJS)
+	@echo "$(CGREEN)[Indexing lib]$(CNONE)"
+	@ranlib $(NAME)
 
 libft/%.o: libft/%.c
-	$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
+	@echo "$(CGREEN)[Converting $(CWHITE)$@$(CGREEN) to object file]$(CNONE)"
+	@$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
 
 srcs/%.o: srcs/%.c
-	$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
+	@echo "$(CGREEN)[Converting $(CWHITE)$@$(CGREEN) to object file]$(CNONE)"
+	@$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
 
 clean:
-	rm -f $(OBJS) $(PF_OBJS)
+	@echo "$(CGREEN)[Performing clean]$(CNONE)"
+	@rm -f $(OBJS) $(PF_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "$(CGREEN)[Performing full clean]$(CNONE)"
+	@rm -f $(NAME)
 
 re: fclean all

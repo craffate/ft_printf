@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 09:46:36 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 13:18:05 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,5 @@ int					ft_printf(const char *format, ...)
 	}
 	ft_putwstr(s);
 	va_end(ap);
-	ft_putstr("Final size: ");
-	ft_putnbr(ft_wstrlen(s) + i);
 	return (ft_wstrlen(s) + i);
 }
