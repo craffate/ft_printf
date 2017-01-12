@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/11 15:55:25 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:05:11 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static wchar_t	*ft_preprocessuint(const char spe, va_list ap, int *arr)
 		s = ft_llitoa_base((long long)va_arg(ap, size_t), 10, spe);
 	else if (spe == 'X' || spe == 'x')
 		s = ft_llitoa_base((long long)va_arg(ap, unsigned int), 16, spe);
+	else if (spe == 'b' || spe == 'B')
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned int), 2, spe);
 	else
 		s = ft_llitoa_base((long long)va_arg(ap, unsigned int), 10, spe);
 	return (s);
@@ -64,7 +66,7 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 	tmp = NULL;
 	if (spe == 'd' || spe == 'i' || spe == 'D')
 		wtmp = ft_preprocessint(spe, ap, arr);
-	if (spe == 'u' || spe == 'o' || spe == 'x' || spe == 'O' || spe == 'X')
+	if (spe == 'u' || spe == 'o' || spe == 'x' || spe == 'O' || spe == 'X' || spe == 'b' || spe == 'B')
 		wtmp = ft_preprocessuint(spe, ap, arr);
 	if (spe == 'c' && !(arr[0] & L))
 	{
