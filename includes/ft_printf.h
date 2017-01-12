@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 08:41:51 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:15:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdarg.h>
 # include <locale.h>
 
-# define MAXCHARS (65536)
 # define MAXARGCHARS (1024)
 # define H (1 << 0)
 # define HH (1 << 1)

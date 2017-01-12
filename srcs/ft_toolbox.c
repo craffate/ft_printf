@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/11 17:19:36 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:24:29 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ wchar_t		*ft_llitoa_base(long long n, unsigned int b, const char spe)
 		neg = 1;
 	}
 	len = ft_getsize(n, b);
-	s = neg == 1 ? ft_wstrnew(len + 2) : ft_wstrnew(len + 1);
+	len += neg == 1 ? 1 : 0;
+	s = neg == 1 ? ft_wstrnew(len + 1) : ft_wstrnew(len);
+	s[0] = neg == 1 ? '-' : s[0];
 	s[len--] = 0;
 	while (n >= b)
 	{
