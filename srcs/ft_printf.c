@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 10:22:00 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 08:41:24 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static const char	*ft_formatcat(wchar_t *s1, const char *format)
 	while (format[j] && format[j] != '%')
 		j++;
 	if (!(tmp = (wchar_t *)malloc(sizeof(wchar_t) * (j + 1))))
-				return (NULL);
+		return (NULL);
 	while (j > 0)
 	{
 		tmp[i++] = *format++;
@@ -31,6 +31,7 @@ static const char	*ft_formatcat(wchar_t *s1, const char *format)
 	}
 	tmp[i] = '\0';
 	ft_wstrcat(s1, tmp);
+	free(tmp);
 	return (format);
 }
 
@@ -40,19 +41,23 @@ int					ft_printf(const char *format, ...)
 	int		arr[3];
 	wchar_t	*s;
 	wchar_t	*tmp;
+	size_t	i;
 
-	setlocale(LC_CTYPE, "");
-	tmp = NULL;
-	if (!(s = (wchar_t *)malloc(sizeof(wchar_t) * INT_MAX)))
-		return (0);
+	tmp = ft_wstrnew(MAXARGCHARS);
+	i = 0;
+	s = ft_wstrnew(0);
 	va_start(ap, format);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format = ft_parse(arr, format, ap);
-			tmp = ft_preprocess(*format, ap);
-			ft_wstrcat(s, tmp);
+			tmp = ft_preprocess(*format, ap, arr, &i);
+			if ((arr[0] & MINUS || arr[0] & PLUS || arr[0] & SPACE
+			|| arr[0] & SHARP || arr[0] & ZERO) || arr[1] != -2 ||
+			arr[2] != -2)
+				tmp = ft_process(tmp, *format, arr);
+			s = ft_wstrjoin_alt(s, tmp);
 			format++;
 		}
 		if (*format != '%')
@@ -60,8 +65,7 @@ int					ft_printf(const char *format, ...)
 	}
 	ft_putwstr(s);
 	va_end(ap);
-	ft_putchar('\n');
 	ft_putstr("Final size: ");
-	ft_putnbr(ft_wstrlen(s));
-	return (ft_wstrlen(s));
+	ft_putnbr(ft_wstrlen(s) + i);
+	return (ft_wstrlen(s) + i);
 }

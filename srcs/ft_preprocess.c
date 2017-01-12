@@ -6,74 +6,84 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 09:21:47 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/11 15:55:25 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_getsize(int n, int b)
+static wchar_t	*ft_preprocessuint(const char spe, va_list ap, int *arr)
 {
-	size_t	size;
+	wchar_t	*s;
 
-	size = 1;
-	while (n /= b)
-		size += 1;
-	return (size);
-}
-
-static char		*ft_llitoa_base(long long n, int b, const char spe)
-{
-	char	*s;
-	size_t	len;
-
-	len = ft_getsize(n, b);
-	if (!(s = (char *)malloc(sizeof(wchar_t) * (len + 1))))
-		return (0);
-	s[len--] = 0;
-	while (n >= b)
-	{
-		s[len--] = ((spe > 64 && spe < 91) ? ("0123456789ABCDEF")[n % b] :
-		("0123456789abcdef")[n % b]);
-		n /= b;
-	}
-	s[len--] = ((spe > 64 && spe < 91) ? ("0123456789ABCDEF")[n % b] :
-	("0123456789abcdef")[n % b]);
+	if (arr[0] & HH || arr[0] & H)
+		s = ft_llitoa_base((long long)va_arg(ap, int), 10, spe);
+	else if ((arr[0] & L && spe == 'u') || spe == 'U')
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned long int), 10, spe);
+	else if (arr[0] & L && (spe == 'x' || spe == 'X'))
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned long int), 16, spe);
+	else if ((arr[0] & L && spe == 'o') || spe == 'O')
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned long int), 8, spe);
+	else if (arr[0] & LL)
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned long long int), 10, spe);
+	else if (arr[0] & J)
+		s = ft_llitoa_base((long long)va_arg(ap, uintmax_t), 10, spe);
+	else if (arr[0] & Z)
+		s = ft_llitoa_base((long long)va_arg(ap, size_t), 10, spe);
+	else if (spe == 'X' || spe == 'x')
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned int), 16, spe);
+	else
+		s = ft_llitoa_base((long long)va_arg(ap, unsigned int), 10, spe);
 	return (s);
 }
 
-static wchar_t	*ft_strtowstr(const char *s)
+static wchar_t	*ft_preprocessint(const char spe, va_list ap, int *arr)
 {
-	unsigned int	i;
-	wchar_t			*s2;
+	wchar_t	*s;
 
-	i = 0;
-	if (!(s2 = (wchar_t *)malloc(sizeof(wchar_t) * ft_strlen(s) + 1)))
-		return (NULL);
-	while (*s)
-		s2[i++] = *s++;
-	s2[i] = '\0';
-	return (s2);
+	if (arr[0] & HH || arr[0] & H)
+		s = ft_llitoa_base((long long)va_arg(ap, int), 10, spe);
+	else if ((arr[0] & L && spe == 'd') || spe == 'D')
+		s = ft_llitoa_base((long long)va_arg(ap, long int), 10, spe);
+	else if (arr[0] & LL)
+		s = ft_llitoa_base((long long)va_arg(ap, long long int), 10, spe);
+	else if (arr[0] & J)
+		s = ft_llitoa_base((long long)va_arg(ap, intmax_t), 10, spe);
+	else if (arr[0] & Z)
+		s = ft_llitoa_base((long long)va_arg(ap, size_t), 10, spe);
+	else
+		s = ft_llitoa_base((long long)va_arg(ap, int), 10, spe);
+	return (s);
 }
 
-wchar_t			*ft_preprocess(const char spe, va_list ap)
+wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 {
 	char	*tmp;
 	wchar_t	*wtmp;
 
-	wtmp = NULL;
-	if (spe == 'd' || spe == 'i')
-		tmp = ft_llitoa_base((long long)va_arg(ap, int), 10, spe);
-	if (spe == 'u')
-		tmp = ft_llitoa_base((long long)va_arg(ap, unsigned int), 10, spe);
-	if (spe == 'o' || spe == 'O')
-		tmp = ft_llitoa_base((long long)va_arg(ap, unsigned int), 8, spe);
-	if (spe == 'x' || spe == 'X')
-		tmp = ft_llitoa_base((long long)va_arg(ap, unsigned int), 16, spe);
-	if (spe == 's')
+	tmp = NULL;
+	if (spe == 'd' || spe == 'i' || spe == 'D')
+		wtmp = ft_preprocessint(spe, ap, arr);
+	if (spe == 'u' || spe == 'o' || spe == 'x' || spe == 'O' || spe == 'X')
+		wtmp = ft_preprocessuint(spe, ap, arr);
+	if (spe == 'c' && !(arr[0] & L))
+	{
+		tmp = ft_strnew(2);
+		*tmp = va_arg(ap, int);
+		wtmp = ft_strtowstr(tmp);
+	}
+	if (spe == 'C' || (spe == 'c' && arr[0] & L))
+	{
+		wtmp = ft_wstrnew(2);
+		*wtmp = va_arg(ap, wint_t);
+	}
+	if (spe == 's' && !(arr[0] & L))
+	{
 		tmp = va_arg(ap, char *);
-	if (spe == 'S')
+		wtmp = ft_strtowstr(tmp);
+	}
+	if (spe == 'S' || (spe == 's' && arr[0] & L))
 		wtmp = va_arg(ap, wchar_t *);
-	wtmp = wtmp == NULL ? ft_strtowstr(tmp) : wtmp;
+	*i += ft_extrabits(wtmp);
 	return (wtmp);
 }

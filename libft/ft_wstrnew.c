@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
+/*   ft_wstrnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 07:28:54 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 07:37:07 by craffate         ###   ########.fr       */
+/*   Created: 2017/01/10 11:35:25 by craffate          #+#    #+#             */
+/*   Updated: 2017/01/10 11:36:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_wstrlen(const wchar_t *s)
+wchar_t	*ft_wstrnew(size_t size)
 {
-	size_t	i;
+	wchar_t			*s;
+	unsigned int	i;
 
+	if (!(s = (wchar_t *)malloc(sizeof(wchar_t) * (size + 1))))
+		return (NULL);
 	i = 0;
-	while (*s++)
-		i++;
-	return (i);
+	s[size] = '\0';
+	while (i < size)
+		s[i++] = '\0';
+	return (s);
 }

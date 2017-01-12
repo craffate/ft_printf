@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/09 17:30:16 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/10 11:43:36 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char		*ft_parsewi(int *arr, const char *format, va_list ap)
+static const char	*ft_parsewi(int *arr, const char *format, va_list ap)
 {
 	char			*tmp;
 	unsigned int	i;
@@ -34,7 +34,7 @@ static const char		*ft_parsewi(int *arr, const char *format, va_list ap)
 	return (format);
 }
 
-static const char		*ft_parsepr(int *arr, const char *format, va_list ap)
+static const char	*ft_parsepr(int *arr, const char *format, va_list ap)
 {
 	char			*tmp;
 	unsigned int	i;
@@ -71,7 +71,7 @@ static int			ft_parsefl(const char *format, unsigned int *i)
 	return (0);
 }
 
-const char				*ft_parse(int *arr, const char *format, va_list ap)
+const char			*ft_parse(int *arr, const char *format, va_list ap)
 {
 	unsigned int	i;
 
