@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 11:43:36 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 14:13:48 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static const char	*ft_parsepr(int *arr, const char *format, va_list ap)
 	i = 0;
 	if (!(tmp = (char *)malloc(sizeof(char) * (10 + 1))))
 		return (NULL);
+	if (ft_isspecifier(*format) || ft_islength(*format))
+	{
+		arr[2] = 0;
+		return (format + 1);
+	}
 	if (*format == '*')
 	{
 		arr[2] = va_arg(ap, int);
