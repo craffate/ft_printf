@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 08:41:24 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:46:36 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int					ft_printf(const char *format, ...)
 			tmp = ft_preprocess(*format, ap, arr, &i);
 			if ((arr[0] & MINUS || arr[0] & PLUS || arr[0] & SPACE
 			|| arr[0] & SHARP || arr[0] & ZERO) || arr[1] != -2 ||
-			arr[2] != -2)
+			arr[2] != -2 || *format == 'p' || *format == 'P')
 				tmp = ft_process(tmp, *format, arr);
 			s = ft_wstrjoin_alt(s, tmp);
 			format++;
