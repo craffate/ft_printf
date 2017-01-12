@@ -70,7 +70,8 @@ SRCS		=	ft_memset.c \
 				ft_wcharlen.c \
 				ft_wstrnew.c \
 				ft_wcharlen.c \
-				ft_wstrjoin.c
+				ft_wstrjoin.c \
+				ft_wstrchr.c
 
 PF_SRCS		=	ft_printf.c \
 				ft_parse.c \

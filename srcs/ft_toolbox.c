@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 09:24:29 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 10:15:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_extrabits(const wchar_t *s)
+size_t			ft_extrabits(const wchar_t *s)
 {
 	size_t			i;
 	unsigned int	j;
@@ -42,7 +42,8 @@ static size_t	ft_getsize(unsigned long long n, unsigned int b)
 	return (size);
 }
 
-wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b, const char spe)
+wchar_t			*ft_ullitoa_base(unsigned long long n, unsigned int b,
+		const char spe)
 {
 	wchar_t	*s;
 	size_t	len;
@@ -61,7 +62,7 @@ wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b, const char spe)
 	return (s);
 }
 
-wchar_t		*ft_llitoa_base(long long n, unsigned int b, const char spe)
+wchar_t			*ft_llitoa_base(long long n, unsigned int b, const char spe)
 {
 	wchar_t	*s;
 	size_t	len;
@@ -89,7 +90,7 @@ wchar_t		*ft_llitoa_base(long long n, unsigned int b, const char spe)
 	return (s);
 }
 
-wchar_t	*ft_strtowstr(const char *s)
+wchar_t			*ft_strtowstr(const char *s)
 {
 	unsigned int	i;
 	wchar_t			*s2;
