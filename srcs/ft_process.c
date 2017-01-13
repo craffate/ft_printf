@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 12:30:28 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 16:37:55 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/13 10:34:22 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,13 @@ wchar_t			*ft_process(const wchar_t *s, char spe, int *arr)
 	size_t	eb;
 
 	s2 = (wchar_t *)s;
+	ft_putchar('\n');
+	ft_putnbr(arr[0]);
+	ft_putchar('\n');
+	ft_putnbr(arr[1]);
+	ft_putchar('\n');
+	ft_putnbr(arr[2]);
+	ft_putchar('\n');
 	if (spe == 'p' || spe == 'P')
 		s2 = ft_sharp(s, spe);
 	if (arr[0] & SHARP && (spe == 'o' || spe == 'O' || spe == 'x' || spe == 'X'
