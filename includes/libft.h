@@ -6,7 +6,7 @@
 /*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:46:23 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 10:27:10 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 15:45:47 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,7 @@ wchar_t				*ft_wstrnew(size_t size);
 size_t				ft_wcharlen(wchar_t c);
 wchar_t				*ft_wstrjoin(const wchar_t *s1, const wchar_t *s2);
 wchar_t				*ft_wstrchr(const wchar_t *s, int c);
+int					ft_wstrcmp(const wchar_t *s1, const wchar_t *s2);
+int					ft_wstrncmp(const wchar_t *s1, const wchar_t *s2, size_t i);
 
 #endif

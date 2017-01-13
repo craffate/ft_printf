@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 13:18:05 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 17:14:11 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static const char	*ft_formatcat(wchar_t *s1, const char *format)
 
 	i = 0;
 	j = 0;
-	while (format[j] && format[j] != '%')
+	while (format[j] && format[j] != '%' && format[j] != '{')
 		j++;
 	if (!(tmp = (wchar_t *)malloc(sizeof(wchar_t) * (j + 1))))
 		return (NULL);
@@ -51,8 +51,11 @@ int					ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
+			ft_putchar('a');
 			format = ft_parse(arr, format, ap);
+			ft_putchar('a');
 			tmp = ft_preprocess(*format, ap, arr, &i);
+			ft_putchar('a');
 			if ((arr[0] & MINUS || arr[0] & PLUS || arr[0] & SPACE
 			|| arr[0] & SHARP || arr[0] & ZERO) || arr[1] != -2 ||
 			arr[2] != -2 || *format == 'p' || *format == 'P')
@@ -60,7 +63,9 @@ int					ft_printf(const char *format, ...)
 			s = ft_wstrjoin_alt(s, tmp);
 			format++;
 		}
-		if (*format != '%')
+	//	if (*format == '{')
+	//		format = ft_colors(format, &s);
+		if (*format != '%' && *format != '{')
 			format = ft_formatcat(s, format);
 	}
 	ft_putwstr(s);

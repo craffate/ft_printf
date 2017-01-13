@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 12:52:44 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/12 16:20:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@
 # define MINUS (1 << 8)
 # define PLUS (1 << 9)
 # define SPACE (1 << 10)
+# define EOC (L"\x1b[0m")
+# define RED (L"\x1b[31m")
+# define GREEN (L"\x1b[32m")
+# define YELLOW (L"\x1b[33m")
+# define BLUE (L"\x1b[34m")
+# define MAGENTA (L"\x1b[35m")
+# define CYAN (L"\x1b[36m")
+# define WHITE (L"\x1b[37m")
 
 int			ft_printf(const char *format, ...);
 const char	*ft_parse(int *arr, const char *format, va_list ap);
@@ -47,5 +55,7 @@ wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b, const char spe);
 size_t		ft_extrabits(const wchar_t *s);
 wchar_t		*ft_strtowstr(const char *s);
 wchar_t		*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2);
+wchar_t		*ft_wwidth(const wchar_t *s, int *arr, size_t eb);
+const char	*ft_colors(const char *format, wchar_t **s);
 
 #endif

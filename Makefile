@@ -71,7 +71,9 @@ SRCS		=	ft_memset.c \
 				ft_wstrnew.c \
 				ft_wcharlen.c \
 				ft_wstrjoin.c \
-				ft_wstrchr.c
+				ft_wstrchr.c \
+				ft_wstrcmp.c \
+				ft_wstrncmp.c
 
 PF_SRCS		=	ft_printf.c \
 				ft_parse.c \
@@ -81,7 +83,9 @@ PF_SRCS		=	ft_printf.c \
 				ft_preprocess.c \
 				ft_process.c \
 				ft_toolbox.c \
-				ft_toolbox2.c
+				ft_toolbox2.c \
+				ft_process2.c \
+				ft_colors.c
 
 OBJS		=	$(addprefix libft/, $(SRCS:.c=.o))
 
