@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 12:30:28 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 10:34:22 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:24:55 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ wchar_t			*ft_process(const wchar_t *s, char spe, int *arr)
 
 	s2 = (wchar_t *)s;
 	ft_putchar('\n');
+	ft_putstr("Flags:\t\t");
 	ft_putnbr(arr[0]);
 	ft_putchar('\n');
+	ft_putstr("Width:\t\t");
 	ft_putnbr(arr[1]);
 	ft_putchar('\n');
+	ft_putstr("Precision:\t");
 	ft_putnbr(arr[2]);
 	ft_putchar('\n');
 	if (spe == 'p' || spe == 'P')
@@ -103,7 +106,6 @@ wchar_t			*ft_process(const wchar_t *s, char spe, int *arr)
 		s2 = ft_plus(s2);
 	if (arr[0] & SPACE && !(arr[0] & PLUS) && !(ft_wstrchr(s2, '-')))
 		s2 = ft_space(s2);
-	ft_putchar('d');
 	if (arr[1] != -2 && ft_wstrlen(s) < (size_t)arr[1] && !((arr[0] & L && spe == 's') || spe == 'S'))
 		s2 = ft_width(s2, arr);
 	eb = ft_extrabits(s2);

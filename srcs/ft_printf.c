@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 10:41:25 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:18:14 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char	*ft_formatcat(wchar_t *s1, const char *format)
+static const char	*ft_formatcat(wchar_t **s1, const char *format)
 {
 	size_t	i;
 	size_t	j;
@@ -28,8 +28,7 @@ static const char	*ft_formatcat(wchar_t *s1, const char *format)
 		tmp[i++] = *format++;
 		j--;
 	}
-	tmp[i] = '\0';
-	ft_wstrcat(s1, tmp);
+	*s1 = ft_wstrjoin_alt(*s1, tmp);
 	free(tmp);
 	return (format);
 }
@@ -62,7 +61,7 @@ int					ft_printf(const char *format, ...)
 		if (*format == '{')
 			format = ft_colors(format, &s);
 		if (*format != '%' && *format != '{')
-			format = ft_formatcat(s, format);
+			format = ft_formatcat(&s, format);
 	}
 	ft_putwstr(s);
 	va_end(ap);

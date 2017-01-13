@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:05:20 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 09:29:53 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:14:42 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ wchar_t	*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2)
 	unsigned int	i;
 	wchar_t			*s3;
 
-	if (!(s3 = (wchar_t *)malloc(sizeof(wchar_t) *
-		(ft_wstrlen(s1) + ft_wstrlen(s2) + 1))))
-		return (NULL);
+	s3 = ft_wstrnew(ft_wstrlen(s1) + ft_wstrlen(s2));
 	i = 0;
 	while (s1[i])
 	{
