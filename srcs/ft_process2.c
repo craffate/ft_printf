@@ -6,13 +6,28 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 15:53:09 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 11:26:47 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static wchar_t	*ft_precision_int(const wchar_t *s, int *arr)
+static wchar_t	*ft_precision_s(wchar_t *s, int *arr)
+{
+	wchar_t			*s2;
+	unsigned int	i;
+
+	s2 = ft_wstrnew(arr[2]);
+	i = 0;
+	while (i > 0)
+	{
+		s2[i] = s[i];
+		i++;
+	}
+	return (s2);
+}
+
+static wchar_t	*ft_precision_int(wchar_t *s, int *arr)
 {
 	wchar_t			*s2;
 	unsigned int	i;
@@ -28,24 +43,23 @@ static wchar_t	*ft_precision_int(const wchar_t *s, int *arr)
 	return (s2);
 }
 
-wchar_t	*ft_precision(const char spe, const wchar_t *s, int *arr)
+wchar_t	*ft_precision(const char spe, wchar_t *s, int *arr)
 {
 	wchar_t	*s2;
 
 	s2 = ft_wstrnew(ft_wstrlen(s) + arr[2]);
-	
 	if (spe == 'd' || spe == 'D' || spe == 'i' || spe == 'o' || spe == 'O' ||
 		spe == 'x' || spe == 'X' || spe == 'u' || spe == 'U' ||
 		spe == 'b' || spe == 'B')
 		s2 = ft_precision_int(s, arr);
-/*	else if (spe == 's')
+	else if (spe == 's')
 		ft_precision_s(s, arr);
-	else if (spe == 'S' || (spe == 's' && arr[0] & L))
-		ft_precision_ws(s, arr); */
+//	else if (spe == 'S' || (spe == 's' && arr[0] & L))
+//		ft_precision_ws(s, arr);
 	return (s2);
 }
 
-wchar_t	*ft_wwidth(const wchar_t *s, int *arr, size_t eb)
+wchar_t	*ft_wwidth(wchar_t *s, int *arr, size_t eb)
 {
 	wchar_t	*s2;
 

@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 12:30:28 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 15:20:49 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 11:28:09 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static wchar_t	*ft_space(const wchar_t *s)
+static wchar_t	*ft_space(wchar_t *s)
 {
 	wchar_t	*s2;
 
@@ -22,7 +22,7 @@ static wchar_t	*ft_space(const wchar_t *s)
 	return (s2);
 }
 
-static wchar_t	*ft_plus(const wchar_t *s)
+static wchar_t	*ft_plus(wchar_t *s)
 {
 	wchar_t	*s2;
 
@@ -32,7 +32,7 @@ static wchar_t	*ft_plus(const wchar_t *s)
 	return (s2);
 }
 
-static wchar_t	*ft_width(const wchar_t *s, int *arr)
+static wchar_t	*ft_width(wchar_t *s, int *arr)
 {
 	wchar_t	*s2;
 
@@ -58,10 +58,11 @@ static wchar_t	*ft_width(const wchar_t *s, int *arr)
 			ft_wstrcat(s2, L"0");
 		ft_wstrcat(s2, s);
 	}
+	free(s);
 	return (s2);
 }
 
-static wchar_t	*ft_sharp(const wchar_t *s, char spe)
+static wchar_t	*ft_sharp(wchar_t *s, char spe)
 {
 	wchar_t	*s2;
 
@@ -80,7 +81,7 @@ static wchar_t	*ft_sharp(const wchar_t *s, char spe)
 	return (s2);
 }
 
-wchar_t			*ft_process(const wchar_t *s, char spe, int *arr)
+wchar_t			*ft_process(wchar_t *s, char spe, int *arr)
 {
 	wchar_t	*s2;
 	size_t	eb;
@@ -88,10 +89,10 @@ wchar_t			*ft_process(const wchar_t *s, char spe, int *arr)
 	s2 = (wchar_t *)s;
 	s2 = ft_precision(spe, s, arr);
 	if (spe == 'p' || spe == 'P')
-		s2 = ft_sharp(s, spe);
+		s2 = ft_sharp(s2, spe);
 	if (arr[0] & SHARP && (spe == 'o' || spe == 'O' || spe == 'x' || spe == 'X'
 		|| spe == 'b' || spe == 'B'))
-		s2 = ft_sharp(s, spe);
+		s2 = ft_sharp(s2, spe);
 	if (arr[0] & PLUS && (spe == 'u' || spe == 'd' || spe == 'i')
 		&& !(s[0] == '-' || s[0] == '+'))
 		s2 = ft_plus(s2);

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 15:52:46 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 11:28:21 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int			ft_isint(const char c);
 int			ft_isuint(const char c);
 int			ft_isdouble(const char c);
 wchar_t		*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i);
-wchar_t		*ft_process(const wchar_t *s, char spe, int *arr);
+wchar_t		*ft_process(wchar_t *s, char spe, int *arr);
 wchar_t		*ft_llitoa_base(long long n, unsigned int b, const char spe);
 wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b, const char spe);
 size_t		ft_extrabits(const wchar_t *s);
 wchar_t		*ft_strtowstr(const char *s);
 wchar_t		*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2);
-wchar_t		*ft_wwidth(const wchar_t *s, int *arr, size_t eb);
+wchar_t		*ft_wwidth(wchar_t *s, int *arr, size_t eb);
 const char	*ft_colors(const char *format, wchar_t **s);
-wchar_t		*ft_precision(const char spe, const wchar_t *s, int *arr);
+wchar_t		*ft_precision(const char spe, wchar_t *s, int *arr);
 
 #endif

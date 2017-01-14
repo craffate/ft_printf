@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 11:14:01 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 10:54:09 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ size_t			ft_extrabits(const wchar_t *s)
 	j = 0;
 	while (s[j])
 	{
-		if (s[j] > 0x10000)
+		if (s[j] >= 0x10000)
 			i += 3;
-		else if (s[j] > 0x800)
+		else if (s[j] >= 0x800)
 			i += 2;
-		else if (s[j] > 0x80)
+		else if (s[j] >= 0x80)
 			i += 1;
 		j++;
 	}
