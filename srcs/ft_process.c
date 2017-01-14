@@ -1,12 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 12:30:28 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 11:28:09 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 13:25:23 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +85,8 @@ wchar_t			*ft_process(wchar_t *s, char spe, int *arr)
 	size_t	eb;
 
 	s2 = (wchar_t *)s;
-	s2 = ft_precision(spe, s, arr);
+	if (arr[2] != -2)
+		s2 = ft_precision(spe, s, arr);
 	if (spe == 'p' || spe == 'P')
 		s2 = ft_sharp(s2, spe);
 	if (arr[0] & SHARP && (spe == 'o' || spe == 'O' || spe == 'x' || spe == 'X'

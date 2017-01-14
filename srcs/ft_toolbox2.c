@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:05:20 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 11:14:42 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 13:45:29 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,18 @@ wchar_t	*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2)
 	s3[i] = '\0';
 	free(s1);
 	return (s3);
+}
+
+size_t	ft_extrabits_alt(const int c)
+{
+	size_t		i;
+
+	i = 0;
+	if (c >= 0x10000)
+		i += 3;
+	else if (c >= 0x800)
+		i += 2;
+	else if (c >= 0x80)
+		i += 1;
+	return (i);
 }
