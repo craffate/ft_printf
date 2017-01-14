@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 13:45:04 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 15:26:12 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,23 @@ wchar_t			*ft_llitoa_base(long long n, unsigned int b, const char spe)
 	wchar_t	*s;
 	size_t	len;
 	int		neg;
+	unsigned long long	n2;
 
-	neg = 0;
-	if (n < 0)
-	{
-		n *= -1;
-		neg = 1;
-	}
-	len = ft_getsize(n, b);
+	neg = (n < 0);
+	n2 = n < 0 ? -n : n;
+	len = ft_getsize(n2, b);
 	len += neg == 1 ? 1 : 0;
-	s = neg == 1 ? ft_wstrnew(len + 1) : ft_wstrnew(len);
+	s = ft_wstrnew(len);
 	s[0] = neg == 1 ? '-' : s[0];
 	s[len--] = 0;
-	while (n >= b)
+	while (n2 >= b)
 	{
-		s[len--] = ((spe > 64 && spe < 91) ? ("0123456789ABCDEF")[n % b] :
-		("0123456789abcdef")[n % b]);
-		n /= b;
+		s[len--] = ((spe > 64 && spe < 91) ? ("0123456789ABCDEF")[n2 % b] :
+		("0123456789abcdef")[n2 % b]);
+		n2 /= b;
 	}
-	s[len--] = ((spe > 64 && spe < 91) ? ("0123456789ABCDEF")[n % b] :
-	("0123456789abcdef")[n % b]);
+	s[len--] = ((spe > 64 && spe < 91) ? ("0123456789ABCDEF")[n2 % b] :
+	("0123456789abcdef")[n2 % b]);
 	return (s);
 }
 
