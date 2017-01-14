@@ -6,20 +6,20 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/13 10:40:56 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 15:56:26 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_memfinder(const char *format)
+static int			ft_memfinder(const char *format)
 {
 	size_t	i;
 
 	i = 0;
 	if (*format == '*')
 		return (i);
-	while (ft_isdigit(format[i]) && format[i]  != '.' &&
+	while (ft_isdigit(format[i]) && format[i] != '.' &&
 			!(ft_isspecifier(format[i])))
 		i += 1;
 	return (i);
@@ -95,11 +95,9 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 	i = 0;
 	arr[1] = -2;
 	arr[2] = -2;
-	format++;
-	if (*format == '%')
+	if (*++format == '%')
 		return (format);
 	while (!ft_isspecifier(*format))
-	{
 		if ((*format == 'h' || *format == 'l') && (i & LL || i & HH))
 			format++;
 		else if (ft_isflag(*format) || ft_islength(*format))
@@ -107,13 +105,13 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 			ft_parseflle(format, &i);
 			format++;
 		}
-		else if ((*format == '.' && (ft_isdigit(*(format + 1)) || *(format + 1) == '*')) && arr[2] == -2)
+		else if ((*format == '.' && (ft_isdigit(*(format + 1)) ||
+				*(format + 1) == '*')) && arr[2] == -2)
 			format = ft_parsepr(arr, format + 1, ap);
 		else if ((ft_isdigit(*format) || *format == '*') && arr[1] == -2)
 			format = ft_parsewi(arr, format, ap);
 		else
 			format++;
-	}
 	arr[0] = i;
 	return (format);
 }

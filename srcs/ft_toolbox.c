@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 15:26:12 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/14 15:52:06 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static size_t	ft_getsize(unsigned long long n, unsigned int b)
 }
 
 wchar_t			*ft_ullitoa_base(unsigned long long n, unsigned int b,
-		const char spe)
+				const char spe)
 {
 	wchar_t	*s;
 	size_t	len;
@@ -64,9 +64,9 @@ wchar_t			*ft_ullitoa_base(unsigned long long n, unsigned int b,
 
 wchar_t			*ft_llitoa_base(long long n, unsigned int b, const char spe)
 {
-	wchar_t	*s;
-	size_t	len;
-	int		neg;
+	wchar_t				*s;
+	size_t				len;
+	int					neg;
 	unsigned long long	n2;
 
 	neg = (n < 0);

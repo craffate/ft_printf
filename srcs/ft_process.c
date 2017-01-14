@@ -1,10 +1,12 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 12:30:28 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 13:25:23 by craffate         ###   ########.fr       */
+/*   Created: 2017/01/14 15:42:58 by craffate          #+#    #+#             */
+/*   Updated: 2017/01/14 15:54:03 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +58,6 @@ static wchar_t	*ft_width(wchar_t *s, int *arr)
 			ft_wstrcat(s2, L"0");
 		ft_wstrcat(s2, s);
 	}
-	free(s);
 	return (s2);
 }
 
@@ -97,10 +98,12 @@ wchar_t			*ft_process(wchar_t *s, char spe, int *arr)
 		s2 = ft_plus(s2);
 	if (arr[0] & SPACE && !(arr[0] & PLUS) && !(ft_wstrchr(s2, '-')))
 		s2 = ft_space(s2);
-	if (arr[1] != -2 && ft_wstrlen(s) < (size_t)arr[1] && !((arr[0] & L && spe == 's') || spe == 'S'))
+	if (arr[1] != -2 && ft_wstrlen(s) < (size_t)arr[1] &&
+		!((arr[0] & L && spe == 's') || spe == 'S'))
 		s2 = ft_width(s2, arr);
 	eb = ft_extrabits(s2);
-	if (arr[1] != -2 && (ft_wstrlen(s) + eb) < (size_t)arr[1] && ((arr[0] & L && spe == 's') || spe == 'S'))
+	if (arr[1] != -2 && (ft_wstrlen(s) + eb) < (size_t)arr[1] &&
+		((arr[0] & L && spe == 's') || spe == 'S'))
 		s2 = ft_wwidth(s2, arr, eb);
 	return (s2);
 }
