@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 15:16:53 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/15 14:28:01 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 		wtmp = ft_preprocessstr(spe, ap, arr);
 	wtmp = spe == '%' ? ft_preprocesspercent() : wtmp;
 	*i += ft_extrabits(wtmp);
+	*i += (spe == 'c' || spe == 'C') ? -1 : 0;
 	return (wtmp);
 }
