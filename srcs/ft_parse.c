@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 15:56:26 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/15 14:03:39 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 		else
 			format++;
 	arr[0] = i;
+	i |= arr[1] < 0 ? MINUS : i;
 	return (format);
 }
