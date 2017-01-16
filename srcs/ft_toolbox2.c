@@ -6,13 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:05:20 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 13:28:40 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 14:23:43 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 wchar_t	*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2)
 {

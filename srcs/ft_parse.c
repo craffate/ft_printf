@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 13:31:19 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 14:28:20 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ static int			ft_memfinder(const char *format)
 	return (i);
 }
 
-static const char	*ft_parsewi(int *arr, const char *format, va_list ap)
+static const char	*ft_parsewi(int *arr, const char *format, va_list ap,
+		unsigned int *j)
 {
 	char			*tmp;
 	unsigned int	i;
 
 	i = 0;
+	*j = 1;
 	tmp = ft_strnew(ft_memfinder(format));
 	if (*format == '*')
 	{
@@ -100,17 +102,11 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 		if ((*format == 'h' || *format == 'l') && (i & LL || i & HH))
 			format++;
 		else if (ft_isflag(*format) || ft_islength(*format))
-		{
-			ft_parseflle(format, &i);
-			format++;
-		}
+			ft_parseflle(format++, &i);
 		else if (*format == '.' && arr[2] == -2)
 			format = ft_parsepr(arr, format + 1, ap);
 		else if ((ft_isdigit(*format) || *format == '*') && j == 0)
-		{
-			format = ft_parsewi(arr, format, ap);
-			j = 1;
-		}
+			format = ft_parsewi(arr, format, ap, &j);
 		else
 			format++;
 	i |= (arr[1] < 0 && j == 1) ? MINUS : i;
