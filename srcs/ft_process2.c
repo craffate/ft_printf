@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 15:52:32 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 13:02:37 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static wchar_t	*ft_precision_s(wchar_t *s, int *arr)
 		s2[i] = s[i];
 		i++;
 	}
+	free(s);
 	return (s2);
 }
 
@@ -60,7 +61,7 @@ static wchar_t	*ft_precision_int(wchar_t *s, int *arr)
 
 	s2 = ft_wstrnew(ft_wstrlen(s) + arr[2]);
 	i = 0;
-	if (arr[2] != 0)
+	if ((arr[2] == 0 && *s != '0') || arr[2] != 0)
 	{
 		while (ft_wstrlen(s) < (size_t)arr[2]--)
 			ft_wstrcat(s2, L"0");

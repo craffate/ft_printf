@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/15 14:10:03 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 13:01:35 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,21 @@ static const char	*ft_parsepr(int *arr, const char *format, va_list ap)
 	unsigned int	i;
 
 	i = 0;
-	tmp = ft_strnew(ft_memfinder(format));
 	if (ft_isspecifier(*format) || ft_islength(*format))
 	{
 		arr[2] = 0;
-		free(tmp);
-		return (format + 1);
+		return (format);
 	}
 	else if (*format == '*')
 	{
 		arr[2] = va_arg(ap, int);
-		free(tmp);
 		return (format + 1);
 	}
+	tmp = ft_strnew(ft_memfinder(format));
 	while (ft_isdigit(*format))
 		tmp[i++] = *format++;
 	tmp[i] = '\0';
-	arr[2] = *tmp ? ft_atoi(tmp) : 0;
-	free(tmp);
+	arr[2] = *tmp ? ft_atoi(tmp) : arr[2];
 	return (format);
 }
 
@@ -105,8 +102,7 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 			ft_parseflle(format, &i);
 			format++;
 		}
-		else if ((*format == '.' && (ft_isdigit(*(format + 1)) ||
-				*(format + 1) == '*')) && arr[2] == -2)
+		else if (*format == '.' && arr[2] == -2)
 			format = ft_parsepr(arr, format + 1, ap);
 		else if ((ft_isdigit(*format) || *format == '*') && arr[1] == -2)
 			format = ft_parsewi(arr, format, ap);
@@ -114,6 +110,6 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 			format++;
 	i |= arr[1] < 0 ? MINUS : i;
 	arr[0] = i;
-	arr[1] = arr[1] < 0 ? arr[1] * -1 : arr[1];
+	arr[1] = (arr[1] < 0 && arr[1] != -2) ? arr[1] * -1 : arr[1];
 	return (format);
 }
