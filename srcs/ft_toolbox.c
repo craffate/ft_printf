@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 15:52:06 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 17:29:01 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ wchar_t			*ft_llitoa_base(long long n, unsigned int b, const char spe)
 	return (s);
 }
 
-wchar_t			*ft_strtowstr(const char *s)
+wchar_t			*ft_strtowstr(char *s)
 {
 	unsigned int	i;
 	wchar_t			*s2;

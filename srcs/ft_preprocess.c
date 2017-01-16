@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 13:31:47 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 17:42:37 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static wchar_t	*ft_preprocesspercent(void)
 {
 	wchar_t	*s;
 
-	s = ft_wstrnew(1);
-	ft_wstrcat(s, L"%");
+	s = ft_wstrdup(L"%");
 	return (s);
 }
 
@@ -83,19 +82,15 @@ wchar_t			*ft_preprocessstr(const char spe, va_list ap, int *arr)
 		if (!(s == NULL))
 			ws = ft_strtowstr(s);
 		else
-		{
-			ws = ft_wstrnew(6);
-			ft_wstrcat(ws, L"(null)");
-		}
+			ws = ft_wstrdup(L"(null)");
 	}
 	else if (spe == 'S' || (spe == 's' && arr[0] & L))
 	{
 		ws = va_arg(ap, wchar_t *);
 		if (ws == NULL)
-		{
-			ws = ft_wstrnew(6);
-			ft_wstrcat(ws, L"(null)");
-		}
+			ws = ft_wstrdup(L"(null)");
+		else
+			ws = ft_wstrdup(ws);
 	}
 	return (ws);
 }
@@ -105,7 +100,7 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 	char	*tmp;
 	wchar_t	*wtmp;
 
-	tmp = NULL;
+	tmp = ft_strnew(1);
 	if (spe == 'd' || spe == 'i' || spe == 'D' || spe == 'p' || spe == 'P')
 		wtmp = ft_preprocessint(spe, ap, arr);
 	if (spe == 'u' || spe == 'U' || spe == 'o' || spe == 'x' || spe == 'O'
@@ -113,7 +108,6 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 		wtmp = ft_preprocessuint(spe, ap, arr);
 	if (spe == 'c' && !(arr[0] & L))
 	{
-		tmp = ft_strnew(1);
 		*tmp = va_arg(ap, int);
 		wtmp = ft_strtowstr(tmp);
 	}
@@ -125,5 +119,6 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 	wtmp = spe == 'S' || spe == 's' ? ft_preprocessstr(spe, ap, arr) : wtmp;
 	wtmp = spe == '%' ? ft_preprocesspercent() : wtmp;
 	*i += ft_extrabits(wtmp);
+	free(tmp);
 	return (wtmp);
 }

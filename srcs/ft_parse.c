@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 14:28:20 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 16:09:47 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static const char	*ft_parsepr(int *arr, const char *format, va_list ap)
 		tmp[i++] = *format++;
 	tmp[i] = '\0';
 	arr[2] = *tmp ? ft_atoi(tmp) : arr[2];
+	free(tmp);
 	return (format);
 }
 

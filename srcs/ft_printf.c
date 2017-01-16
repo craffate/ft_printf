@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 13:30:20 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 18:35:50 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int					ft_printf(const char *format, ...)
 	size_t	i;
 
 	tmp = NULL;
-	i = 0;
 	s = ft_wstrnew(0);
+	i = 0;
 	va_start(ap, format);
 	while (*format)
 	{
@@ -59,12 +59,15 @@ int					ft_printf(const char *format, ...)
 			tmp = ft_preprocess(*format, ap, arr, &i);
 			ft_check(arr, format) ? tmp = ft_process(tmp, *format, arr) : 0;
 			s = ft_wstrjoin_alt(s, tmp);
+			free(tmp);
 			format++;
 		}
 		*format == '{' ? format = ft_colors(format, &s) : 0;
-		*format != 37 && *format != '{' ? format = ft_formatcat(&s, format) : 0;
+		*format != 37 ? format = ft_formatcat(&s, format) : 0;
 	}
 	ft_putwstr(s);
+	arr[0] = ft_wstrlen(s);
+	free(s);
 	va_end(ap);
-	return (ft_wstrlen(s) + i);
+	return (arr[0] + i);
 }
