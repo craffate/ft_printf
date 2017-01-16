@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 13:01:35 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/16 13:31:19 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ static int			ft_parseflle(const char *format, unsigned int *i)
 const char			*ft_parse(int *arr, const char *format, va_list ap)
 {
 	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
+	j = 0;
 	arr[1] = -2;
 	arr[2] = -2;
 	if (*++format == '%')
@@ -104,12 +106,15 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 		}
 		else if (*format == '.' && arr[2] == -2)
 			format = ft_parsepr(arr, format + 1, ap);
-		else if ((ft_isdigit(*format) || *format == '*') && arr[1] == -2)
+		else if ((ft_isdigit(*format) || *format == '*') && j == 0)
+		{
 			format = ft_parsewi(arr, format, ap);
+			j = 1;
+		}
 		else
 			format++;
-	i |= arr[1] < 0 ? MINUS : i;
+	i |= (arr[1] < 0 && j == 1) ? MINUS : i;
 	arr[0] = i;
-	arr[1] = (arr[1] < 0 && arr[1] != -2) ? arr[1] * -1 : arr[1];
+	arr[1] = (arr[1] < 0 && j == 1) ? arr[1] * -1 : arr[1];
 	return (format);
 }
