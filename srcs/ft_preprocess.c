@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 17:42:37 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:42:08 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,15 @@ static wchar_t	*ft_preprocessuint(const char spe, va_list ap, int *arr)
 {
 	wchar_t	*s;
 
-	if (arr[0] & HH || arr[0] & H)
-		s = ft_ullitoa_base(va_arg(ap, int), 10, spe);
-	else if ((arr[0] & L && spe == 'u') || spe == 'U')
-		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 10, spe);
-	else if (arr[0] & L && (spe == 'x' || spe == 'X'))
-		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 16, spe);
-	else if ((arr[0] & L && spe == 'o') || spe == 'O')
-		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 8, spe);
-	else if (arr[0] & LL)
-		s = ft_ullitoa_base(va_arg(ap, unsigned long long int), 10, spe);
-	else if (arr[0] & J)
-		s = ft_ullitoa_base(va_arg(ap, uintmax_t), 10, spe);
-	else if (arr[0] & Z)
-		s = ft_ullitoa_base(va_arg(ap, size_t), 10, spe);
-	else if (spe == 'o')
-		s = ft_ullitoa_base(va_arg(ap, unsigned int), 8, spe);
-	else if (spe == 'X' || spe == 'x')
-		s = ft_ullitoa_base(va_arg(ap, unsigned int), 16, spe);
+	s = NULL;
+	if (spe == 'x' || spe == 'X')
+		s = ft_preprocesshex(spe, ap, arr);
+	else if (spe == 'o' || spe == 'O')
+		s = ft_preprocessoct(spe, ap, arr);
 	else if (spe == 'b' || spe == 'B')
-		s = ft_ullitoa_base(va_arg(ap, unsigned int), 2, spe);
-	else
-		s = ft_ullitoa_base(va_arg(ap, unsigned int), 10, spe);
+		s = ft_preprocessbin(spe, ap, arr);
+	else if (spe == 'u' || spe == 'U')
+		s = ft_preprocessuns(spe, ap, arr);
 	return (s);
 }
 
@@ -70,7 +57,7 @@ static wchar_t	*ft_preprocessint(const char spe, va_list ap, int *arr)
 	return (s);
 }
 
-wchar_t			*ft_preprocessstr(const char spe, va_list ap, int *arr)
+static wchar_t	*ft_preprocessstr(const char spe, va_list ap, int *arr)
 {
 	char	*s;
 	wchar_t	*ws;
@@ -118,6 +105,7 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
 	}
 	wtmp = spe == 'S' || spe == 's' ? ft_preprocessstr(spe, ap, arr) : wtmp;
 	wtmp = spe == '%' ? ft_preprocesspercent() : wtmp;
+	*i += *wtmp == 0 && (spe == 'c' || spe == 'C') ? 1 : 0;
 	*i += ft_extrabits(wtmp);
 	free(tmp);
 	return (wtmp);

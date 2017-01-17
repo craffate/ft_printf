@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 16:04:55 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:50:31 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ wchar_t			*ft_precision(const char spe, wchar_t *s, int *arr)
 {
 	wchar_t	*s2;
 
-	s2 = ft_wstrnew(ft_wstrlen(s) + arr[2]);
+	s2 = NULL;
 	if (spe == 'd' || spe == 'D' || spe == 'i' || spe == 'o' || spe == 'O' ||
 		spe == 'x' || spe == 'X' || spe == 'u' || spe == 'U' ||
 		spe == 'b' || spe == 'B')
@@ -101,12 +101,9 @@ wchar_t			*ft_wwidth(wchar_t *s, int *arr, size_t eb)
 				ft_wstrcat(s2, L" ");
 			ft_wstrcat(s2, s);
 		}
-		else if (arr[0] & MINUS)
-		{
-			ft_wstrcat(s2, s);
+		else if (arr[0] & MINUS && ft_wstrcat(s2, s))
 			while ((ft_wstrlen(s) + eb) < (size_t)arr[1]--)
 				ft_wstrcat(s2, L" ");
-		}
 	}
 	else
 	{
@@ -114,5 +111,6 @@ wchar_t			*ft_wwidth(wchar_t *s, int *arr, size_t eb)
 			ft_wstrcat(s2, L"0");
 		ft_wstrcat(s2, s);
 	}
+	free(s);
 	return (s2);
 }

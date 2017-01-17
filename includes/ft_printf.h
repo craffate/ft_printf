@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 15:13:33 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:41:02 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b,
 			const char spe);
 size_t		ft_extrabits(const wchar_t *s);
 wchar_t		*ft_strtowstr(char *s);
-wchar_t		*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2);
+wchar_t		*ft_wstrj2(wchar_t *s1, const wchar_t *s2);
 wchar_t		*ft_wwidth(wchar_t *s, int *arr, size_t eb);
 const char	*ft_colors(const char *format, wchar_t **s);
 wchar_t		*ft_precision(const char spe, wchar_t *s, int *arr);
 size_t		ft_extrabits_alt(const int c);
+wchar_t		*ft_preprocessbin(const char spe, va_list ap, int *arr);
+wchar_t		*ft_preprocesshex(const char spe, va_list ap, int *arr);
+wchar_t		*ft_preprocessoct(const char spe, va_list ap, int *arr);
+wchar_t		*ft_preprocessuns(const char spe, va_list ap, int *arr);
 
 #endif

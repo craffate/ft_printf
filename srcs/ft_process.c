@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:42:58 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 18:29:24 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:48:24 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ static wchar_t	*ft_width(wchar_t *s, int *arr)
 				ft_wstrcat(s2, L" ");
 			ft_wstrcat(s2, s);
 		}
-		else if (arr[0] & MINUS)
-		{
-			ft_wstrcat(s2, s);
+		else if (arr[0] & MINUS && ft_wstrcat(s2, s))
 			while (ft_wstrlen(s) < (size_t)arr[1]--)
 				ft_wstrcat(s2, L" ");
-		}
 	}
 	else
 	{
@@ -93,22 +90,22 @@ wchar_t			*ft_process(wchar_t *s, char spe, int *arr)
 	free(s);
 	if (arr[2] != -2)
 		s2 = ft_precision(spe, s2, arr);
-	if (arr[1] != -2 && ft_wstrlen(s2) < (size_t)arr[1] &&
-		!((arr[0] & L && spe == 's') || spe == 'S'))
-		s2 = ft_width(s2, arr);
-	eb = ft_extrabits(s2);
+	if (arr[0] & SHARP && (spe == 'o' || spe == 'O' || spe == 'x' || spe == 'X'
+		|| spe == 'b' || spe == 'B') && *s2 != '0')
+		s2 = ft_sharp(s2, spe);
 	if (spe == 'p' || spe == 'P')
 		s2 = ft_sharp(s2, spe);
-	if (arr[0] & SHARP && (spe == 'o' || spe == 'O' || spe == 'x' || spe == 'X'
-		|| spe == 'b' || spe == 'B'))
-		s2 = ft_sharp(s2, spe);
+	eb = ft_extrabits(s2);
+	if (arr[1] != -2 && (ft_wstrlen(s2) + eb) < (size_t)arr[1] &&
+		!((arr[0] & L && spe == 's') || spe == 'S'))
+		s2 = ft_width(s2, arr);
+	if (arr[1] != -2 && (ft_wstrlen(s2) + eb) < (size_t)arr[1] &&
+		((arr[0] & L && spe == 's') || spe == 'S'))
+		s2 = ft_wwidth(s2, arr, eb);
 	if (arr[0] & PLUS && (spe == 'u' || spe == 'd' || spe == 'i')
 		&& !(s[0] == '-' || s[0] == '+'))
 		s2 = ft_plus(s2);
 	if (arr[0] & SPACE && !(arr[0] & PLUS) && !(ft_wstrchr(s2, '-')))
 		s2 = ft_space(s2);
-	if (arr[1] != -2 && (ft_wstrlen(s2) + eb) < (size_t)arr[1] &&
-		((arr[0] & L && spe == 's') || spe == 'S'))
-		s2 = ft_wwidth(s2, arr, eb);
 	return (s2);
 }

@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 18:05:20 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 17:25:38 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:40:42 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-wchar_t	*ft_wstrjoin_alt(wchar_t *s1, const wchar_t *s2)
+wchar_t	*ft_wstrj2(wchar_t *s1, const wchar_t *s2)
 {
 	unsigned int	i;
 	wchar_t			*s3;
