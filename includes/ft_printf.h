@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:30:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/17 15:41:02 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/17 15:57:40 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			ft_isint(const char c);
 int			ft_isuint(const char c);
 int			ft_isdouble(const char c);
 wchar_t		*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i);
-wchar_t		*ft_process(wchar_t *s, char spe, int *arr);
+wchar_t		*ft_process(wchar_t *s, const char spe, int *arr);
 wchar_t		*ft_llitoa_base(long long n, unsigned int b, const char spe);
 wchar_t		*ft_ullitoa_base(unsigned long long n, unsigned int b,
 			const char spe);
