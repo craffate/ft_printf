@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/17 17:48:59 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/18 12:58:22 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ static wchar_t	*ft_precision_ws(wchar_t *s, int *arr)
 		{
 			s2 = ft_wstrnew(i);
 			ft_wstrcat(s2, tmp);
+			free(tmp);
 			return (s2);
 		}
 		tmp[i] = s[i];
 		i++;
 	}
-	free(s);
+	free(tmp);
 	return (s2);
 }
 
@@ -51,7 +52,6 @@ static wchar_t	*ft_precision_s(wchar_t *s, int *arr)
 		s2[i] = s[i];
 		i++;
 	}
-	free(s);
 	return (s2);
 }
 
@@ -68,7 +68,6 @@ static wchar_t	*ft_precision_int(wchar_t *s, int *arr)
 			ft_wstrcat(s2, L"0");
 		ft_wstrcat(s2, s);
 	}
-	free(s);
 	return (s2);
 }
 
@@ -85,6 +84,7 @@ wchar_t			*ft_precision(const char spe, wchar_t *s, int *arr)
 		s2 = ft_precision_s(s, arr);
 	else if (spe == 'S' || (spe == 's' && arr[0] & L))
 		s2 = ft_precision_ws(s, arr);
+	free(s);
 	return (s2);
 }
 
