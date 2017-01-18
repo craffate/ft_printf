@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 13:20:35 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/17 15:41:47 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/18 16:08:16 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ wchar_t	*ft_preprocessuns(const char spe, va_list ap, int *arr)
 	wchar_t	*s;
 
 	if (arr[0] & HH || arr[0] & H)
-		s = ft_ullitoa_base(va_arg(ap, int), 10, spe);
+		s = ft_ullitoa_base((unsigned char)va_arg(ap, int), 10, spe);
+	else if (arr[0] & H)
+		s = ft_ullitoa_base((unsigned short int)va_arg(ap, int), 10, spe);
 	else if (arr[0] & L)
 		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 10, spe);
 	else if (arr[0] & LL)
@@ -35,8 +37,10 @@ wchar_t	*ft_preprocessbin(const char spe, va_list ap, int *arr)
 {
 	wchar_t	*s;
 
-	if (arr[0] & HH || arr[0] & H)
-		s = ft_ullitoa_base(va_arg(ap, int), 2, spe);
+	if (arr[0] & HH)
+		s = ft_ullitoa_base((unsigned char)va_arg(ap, int), 2, spe);
+	else if (arr[0] & H)
+		s = ft_ullitoa_base((unsigned short int)va_arg(ap, int), 2, spe);
 	else if (arr[0] & L)
 		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 2, spe);
 	else if (arr[0] & LL)
@@ -54,8 +58,10 @@ wchar_t	*ft_preprocessoct(const char spe, va_list ap, int *arr)
 {
 	wchar_t	*s;
 
-	if (arr[0] & HH || arr[0] & H)
-		s = ft_ullitoa_base(va_arg(ap, int), 8, spe);
+	if (arr[0] & HH)
+		s = ft_ullitoa_base((unsigned char)va_arg(ap, int), 8, spe);
+	else if (arr[0] & H)
+		s = ft_ullitoa_base((unsigned short int)va_arg(ap, int), 8, spe);
 	else if (arr[0] & L)
 		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 8, spe);
 	else if (arr[0] & LL)
@@ -73,8 +79,10 @@ wchar_t	*ft_preprocesshex(const char spe, va_list ap, int *arr)
 {
 	wchar_t	*s;
 
-	if (arr[0] & HH || arr[0] & H)
-		s = ft_ullitoa_base(va_arg(ap, int), 16, spe);
+	if (arr[0] & HH)
+		s = ft_ullitoa_base((unsigned char)va_arg(ap, int), 16, spe);
+	else if (arr[0] & H)
+		s = ft_ullitoa_base((unsigned short int)va_arg(ap, int), 16, spe);
 	else if (arr[0] & L)
 		s = ft_ullitoa_base(va_arg(ap, unsigned long int), 16, spe);
 	else if (arr[0] & LL)

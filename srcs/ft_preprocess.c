@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/17 15:42:08 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/18 16:09:08 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ static wchar_t	*ft_preprocessint(const char spe, va_list ap, int *arr)
 {
 	wchar_t	*s;
 
-	if (arr[0] & HH || arr[0] & H)
-		s = ft_llitoa_base(va_arg(ap, int), 10, spe);
+	if (arr[0] & HH)
+		s = ft_llitoa_base((signed char)va_arg(ap, int), 10, spe);
+	else if (arr[0] & H)
+		s = ft_llitoa_base((short int)va_arg(ap, int), 10, spe);
 	else if ((arr[0] & L && spe == 'd') || spe == 'D')
 		s = ft_llitoa_base(va_arg(ap, long int), 10, spe);
 	else if (arr[0] & LL)

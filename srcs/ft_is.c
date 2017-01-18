@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:42:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 12:36:12 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/18 14:13:31 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_isunint(const char c)
 {
-	return ((c == 'u' || c == 'o' || c == 'x' || c == 'X') ? 1 : 0);
+	return ((c == 'u' || c == 'U' || c == 'O' || c == 'o' || c == 'x'
+			|| c == 'X') ? 1 : 0);
 }
 
 int	ft_isint(const char c)

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/17 17:23:17 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/18 14:55:24 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int					ft_printf(const char *format, ...)
 		*format == '{' ? format = ft_colors(format, &s) : 0;
 		*format != 37 ? format = ft_formatcat(&s, format) : 0;
 	}
-	ft_putwstr(s);
 	arr[0] = ft_wstrlen(s);
+	ft_putwstr(s);
 	free(s);
 	va_end(ap);
 	return (arr[0] + i);

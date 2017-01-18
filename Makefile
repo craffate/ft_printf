@@ -86,7 +86,8 @@ PF_SRCS		=	ft_printf.c \
 				ft_toolbox2.c \
 				ft_process2.c \
 				ft_colors.c \
-				ft_preprocess2.c
+				ft_preprocess2.c \
+				ft_process3.c
 
 OBJS		=	$(addprefix libft/, $(SRCS:.c=.o))
 
