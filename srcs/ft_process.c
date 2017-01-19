@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:42:58 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 08:02:54 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 08:08:30 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ wchar_t			*ft_process(wchar_t *s, const char spe, int *arr)
 	s2 = arr[0] & SHARP && ft_isunint(spe) && *s2 != '0' &&
 		!((spe == 'x' || spe == 'X') && arr[2] == 0) ? ft_sharp(s2, spe) : s2;
 	s2 = spe == 'p' || spe == 'P' ? ft_sharp(s2, spe) : s2;
-	s2 = arr[0] & PLUS && (spe == 'u' || spe == 'd' || spe == 'i') &&
+	s2 = arr[0] & PLUS && (spe == 'd' || spe == 'i' || spe == 'D') &&
 		!(s[0] == '-' || s[0] == '+') && spe != '%' ? ft_plus(s2) : s2;
 	eb = ft_extrabits(s2);
 	s2 = arr[1] != -2 && (ft_wstrlen(s2) + eb) < (size_t)arr[1] && !((arr[0] & L
