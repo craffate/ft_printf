@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 06:28:04 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 07:11:51 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int					ft_printf(const char *format, ...)
 	int		arr[3];
 	wchar_t	*s;
 	wchar_t	*tmp;
-	size_t	i;
+	int		i;
 
 	tmp = NULL;
 	s = ft_wstrnew(0);

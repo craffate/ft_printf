@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 17:29:01 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 07:24:18 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ wchar_t			*ft_strtowstr(char *s)
 
 	i = 0;
 	s2 = ft_wstrnew(ft_strlen(s));
+	if (!s)
+		return (NULL);
 	while (*s)
 		s2[i++] = *s++;
 	return (s2);

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:42:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 06:16:38 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 06:59:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_isunint(const char c)
 
 int	ft_isint(const char c)
 {
-	return ((c == 'd' || c == 'i') ? 1 : 0);
+	return ((c == 'd' || c == 'i' || c == 'D' || c == 'p' || c == 'P') ? 1 : 0);
 }
 
 int	ft_isspecifier(const char c)

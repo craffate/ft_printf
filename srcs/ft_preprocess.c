@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/18 16:09:08 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 07:25:28 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,15 @@ static wchar_t	*ft_preprocessstr(const char spe, va_list ap, int *arr)
 	return (ws);
 }
 
-wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, size_t *i)
+wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, int *i)
 {
 	char	*tmp;
 	wchar_t	*wtmp;
 
 	tmp = ft_strnew(1);
-	if (spe == 'd' || spe == 'i' || spe == 'D' || spe == 'p' || spe == 'P')
-		wtmp = ft_preprocessint(spe, ap, arr);
-	if (spe == 'u' || spe == 'U' || spe == 'o' || spe == 'x' || spe == 'O'
-		|| spe == 'X' || spe == 'b' || spe == 'B')
-		wtmp = ft_preprocessuint(spe, ap, arr);
+	wtmp = NULL;
+	wtmp = ft_isint(spe)? ft_preprocessint(spe, ap, arr) : wtmp;
+	wtmp = ft_isunint(spe) ? ft_preprocessuint(spe, ap, arr) : wtmp;
 	if (spe == 'c' && !(arr[0] & L))
 	{
 		*tmp = va_arg(ap, int);
