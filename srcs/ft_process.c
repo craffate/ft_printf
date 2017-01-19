@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:42:58 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 07:31:25 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 08:02:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,9 @@ static wchar_t	*ft_width(wchar_t *s, const char spe, int *arr)
 	if ((!(arr[0] & ZERO) || arr[0] & MINUS) || arr[2] != -2)
 	{
 		if (!(arr[0] & MINUS))
-		{
-			while (ft_wstrlen(s) < (size_t)arr[1]--)
-			{
-				if (*s == 0 && (spe == 'c' || spe == 'C') && ft_wstrlen(s) == (size_t)arr[1])
-					break ;
-				ft_wstrcat(s2, L" ");
-			}
-			ft_wstrcat(s2, s);
-		}
-		else if (arr[0] & MINUS && ft_wstrcat(s2, s))
-			while (ft_wstrlen(s) < (size_t)arr[1]--)
-			{
-				if (*s == 0 && (spe == 'c' || spe == 'C') && ft_wstrlen(s) == (size_t)arr[1])
-					break ;
-				ft_wstrcat(s2, L" ");
-			}
+			ft_widthnomin(s, s2, spe, arr);
+		else if (arr[0] & MINUS)
+			ft_widthmin(s, s2, spe, arr);
 	}
 	else
 	{
@@ -103,10 +90,10 @@ wchar_t			*ft_process(wchar_t *s, const char spe, int *arr)
 		spe != '%' && spe != 'c' && spe != 'C' && !ft_isunint(spe) ?
 		ft_space(s2) : s2;
 	s2 = arr[0] & SHARP && ft_isunint(spe) && *s2 != '0' &&
-		!(((spe == 'x' || spe == 'X') && arr[2] == 0)) ? ft_sharp(s2, spe) : s2;
+		!((spe == 'x' || spe == 'X') && arr[2] == 0) ? ft_sharp(s2, spe) : s2;
 	s2 = spe == 'p' || spe == 'P' ? ft_sharp(s2, spe) : s2;
-	s2 = arr[0] & PLUS && (spe == 'd' || spe == 'i') && !(s[0] == '-' ||
-		s[0] == '+') && spe != '%' && !ft_isunint(spe) ? ft_plus(s2) : s2;
+	s2 = arr[0] & PLUS && (spe == 'u' || spe == 'd' || spe == 'i') &&
+		!(s[0] == '-' || s[0] == '+') && spe != '%' ? ft_plus(s2) : s2;
 	eb = ft_extrabits(s2);
 	s2 = arr[1] != -2 && (ft_wstrlen(s2) + eb) < (size_t)arr[1] && !((arr[0] & L
 		&& spe == 's') || spe == 'S') ? ft_width(s2, spe, arr) : s2;

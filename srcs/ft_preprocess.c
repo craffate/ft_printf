@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 07:25:28 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 07:34:40 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, int *i)
 
 	tmp = ft_strnew(1);
 	wtmp = NULL;
-	wtmp = ft_isint(spe)? ft_preprocessint(spe, ap, arr) : wtmp;
+	wtmp = ft_isint(spe) ? ft_preprocessint(spe, ap, arr) : wtmp;
 	wtmp = ft_isunint(spe) ? ft_preprocessuint(spe, ap, arr) : wtmp;
 	if (spe == 'c' && !(arr[0] & L))
 	{

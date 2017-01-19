@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:42:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 06:59:27 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 08:05:09 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_isspecifier(const char c)
 	return ((c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' ||
 			c == 'i' || c == 'o' || c == 'O' || c == 'u' || c == 'U' ||
 			c == 'x' || c == 'X' || c == 'c' || c == 'C' ||
-			c == 'P' || c == '%') ? 1 : 0);
+			c == 'P' || c == '%' || c == 'b' || c == 'B') ? 1 : 0);
 }
 
 int	ft_isflag(const char c)
