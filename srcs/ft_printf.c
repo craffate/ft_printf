@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/18 14:55:24 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 06:28:04 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char		*ft_formatcat(wchar_t **s1, const char *format)
+static const char	*ft_formatcat(wchar_t **s1, const char *format)
 {
 	size_t	i;
 	size_t	j;

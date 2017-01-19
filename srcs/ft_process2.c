@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/18 16:11:19 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/19 06:27:09 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static wchar_t	*ft_precision_int(wchar_t *s, int *arr)
 	{
 		while (ft_wstrlen(s) < (size_t)arr[2]--)
 			ft_wstrcat(s2, L"0");
+		*s == '-' ? ft_wstrcat(s2, L"0") : 0;
 		ft_wstrcat(s2, s);
 	}
 	return (s2);
@@ -111,11 +112,8 @@ wchar_t			*ft_wwidth(wchar_t *s, int *arr, size_t eb)
 		while ((ft_wstrlen(s) + eb) < (size_t)arr[1]--)
 			ft_wstrcat(s2, L"0");
 		ft_wstrcat(s2, s);
-		if (ft_wstrchr(s2, '-'))
-		{
-			*ft_wstrchr(s2, '-') = '0';
+		if (ft_wstrchr(s2, '-') && (*ft_wstrchr(s2, '-') = '0'))
 			s2[0] = '-';
-		}
 	}
 	free(s);
 	return (s2);
