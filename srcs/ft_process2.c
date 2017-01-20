@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 07:57:37 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/20 15:54:58 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ wchar_t			*ft_precision(const char spe, wchar_t *s, int *arr)
 	else if (spe == 'S' || (spe == 's' && arr[0] & L))
 		s2 = ft_precision_ws(s, arr);
 	ft_swapsign(s2, spe, arr);
+	s2 = *s != '0' && arr[0] & SHARP && (spe == 'b' || spe == 'B' || spe == 'x'
+		|| spe == 'X') ? ft_sharp(s2, spe) : s2;
 	free(s);
 	return (s2);
 }

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:42:58 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 08:08:30 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/20 15:49:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static wchar_t	*ft_width(wchar_t *s, const char spe, int *arr)
 	return (s2);
 }
 
-static wchar_t	*ft_sharp(wchar_t *s, const char spe)
+wchar_t	*ft_sharp(wchar_t *s, const char spe)
 {
 	wchar_t	*s2;
 
