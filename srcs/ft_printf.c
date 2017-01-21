@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 07:11:51 by craffate         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:14:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ static int			ft_check(int *arr, const char *format)
 	arr[2] != -2 || *format == 'p' || *format == 'P') ? 1 : 0;
 }
 
+static	void		ft_norme(int *arr, wchar_t *s, va_list ap)
+{
+	arr[0] = ft_wstrlen(s);
+	ft_putwstr(s);
+	free(s);
+	va_end(ap);
+}
+
 int					ft_printf(const char *format, ...)
 {
 	va_list	ap;
@@ -65,9 +73,6 @@ int					ft_printf(const char *format, ...)
 		*format == '{' ? format = ft_colors(format, &s) : 0;
 		*format != 37 ? format = ft_formatcat(&s, format) : 0;
 	}
-	arr[0] = ft_wstrlen(s);
-	ft_putwstr(s);
-	free(s);
-	va_end(ap);
+	ft_norme(arr, s, ap);
 	return (arr[0] + i);
 }
