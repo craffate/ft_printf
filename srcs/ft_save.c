@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 15:01:17 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/09 17:31:15 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 14:41:58 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_savele(unsigned short i, const char *s)
+unsigned int	ft_savele(unsigned int i, const char *s)
 {
 	if (*s == 'h')
 	{
@@ -33,7 +33,7 @@ int	ft_savele(unsigned short i, const char *s)
 	return (i);
 }
 
-int	ft_savefl(unsigned short i, const char c)
+unsigned int	ft_savefl(unsigned int i, const char c)
 {
 	i = c == '#' ? SHARP : i;
 	i = c == '0' ? ZERO : i;

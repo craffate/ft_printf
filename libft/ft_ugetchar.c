@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_ugetchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/15 14:04:00 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/15 14:05:24 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/17 10:49:08 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/17 10:49:44 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+int		ft_ugetchar(void)
 {
-	if (alst && (*alst)->next)
-		ft_lstdel(&(*alst)->next, del);
-	ft_lstdelone(alst, del);
-	*alst = NULL;
+	int	c;
+
+	return (read(0, &c, 1) == 1 ? (unsigned char)c : EOF);
 }

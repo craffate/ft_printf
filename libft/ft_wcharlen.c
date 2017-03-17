@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 15:26:21 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 15:29:20 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 09:27:04 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 09:28:42 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_wcharlen(wchar_t c)
+size_t	ft_wcharlen(const wchar_t c)
 {
-	size_t	i;
+	size_t i;
 
 	i = 1;
 	if (c > 0x10000)

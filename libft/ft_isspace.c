@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 14:32:43 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/10 15:55:40 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 09:07:59 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 09:12:29 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(int c)
+#include "libft.h"
+
+int		ft_isspace(const int c)
 {
-	if (c == '\v' || c == '\t' || c == '\r' || c == '\f' || c == '\n' ||
-			c == ' ')
-		return (1);
-	else
-		return (0);
+	return (c == '\v' || c == '\t' || c == '\r' || c == '\f' || c == '\n' ||
+			c == ' ' ? 1 : 0);
 }

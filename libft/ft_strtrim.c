@@ -3,43 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 01:19:49 by craffate          #+#    #+#             */
-/*   Updated: 2016/12/03 17:01:59 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/17 11:58:34 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/17 12:04:13 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_blankcheck(int c)
+static int	blankcheck(const int c)
 {
-	if (c == ' ' || c == '\n' || c == '\t')
-		return (1);
-	return (0);
+	return (c == ' ' || c == '\t' || c == '\n' ? 1 : 0);
 }
 
-char		*ft_strtrim(char const *s)
+char		*ft_strtrim(const char *s)
 {
 	unsigned int	i;
-	size_t			j;
-	unsigned int	k;
+	unsigned long	j;
+	size_t			k;
 	char			*s2;
 
 	if (!s)
 		return (NULL);
 	i = 0;
-	j = ft_strlen(s);
-	while (ft_blankcheck(s[j - 1]))
-		j--;
-	while (ft_blankcheck(s[i]))
+	k = ft_strlen(s);
+	while (blankcheck(s[k - 1]))
+		k--;
+	while (blankcheck(s[i]))
 		i++;
 	if (!s[i])
 	{
 		s2 = ft_strnew(0);
 		return (s2);
 	}
-	k = j - i;
-	s2 = ft_strsub(s, i, k);
+	j = k - i;
+	s2 = ft_strsub(s, i, j);
 	return (s2);
 }

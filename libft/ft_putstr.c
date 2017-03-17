@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 12:17:38 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/16 11:37:15 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 04:46:47 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 04:51:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+void	ft_putstr(const char *s)
 {
 	if (!s)
 		return ;
-	while (*s)
-		ft_putchar(*s++);
+	write(1, s, ft_strlen(s));
 }

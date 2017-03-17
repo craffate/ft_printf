@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 13:56:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/21 14:14:54 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:12:16 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int			ft_check(int *arr, const char *format)
 
 static	void		ft_norme(int *arr, wchar_t *s, va_list ap)
 {
-	arr[0] = ft_wstrlen(s);
+	arr[0] = (int)ft_wstrlen(s);
 	ft_putwstr(s);
 	free(s);
 	va_end(ap);

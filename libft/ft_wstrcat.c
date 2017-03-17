@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 07:47:06 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 07:49:00 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/17 13:01:47 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/17 13:03:09 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ wchar_t	*ft_wstrcat(wchar_t *s1, const wchar_t *s2)
 	i = ft_wstrlen(s1);
 	while (*s2)
 		s1[i++] = *s2++;
-	s1[i] = '\0';
-	return (*&s1);
+	s1[i] = 0;
+	return (s1);
 }

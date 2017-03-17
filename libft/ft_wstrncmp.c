@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 15:41:40 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/12 15:43:41 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 09:49:00 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 09:50:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 int		ft_wstrncmp(const wchar_t *s1, const wchar_t *s2, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (*s1 && *s1 == *s2 && i < n)
+	while (*s1 && *s1 == *s2 && n)
 	{
 		s1++;
 		s2++;
-		i++;
+		n--;
 	}
-	if (i == n)
-		return (*(wchar_t *)--s1 - *(wchar_t *)--s2);
-	return (*(wchar_t *)s1 - *(wchar_t *)s2);
+	if (!n)
+		return (*(const wchar_t *)--s1 - *(const wchar_t *)--s2);
+	return (*(const wchar_t *)s1 - *(const wchar_t *)s2);
 }

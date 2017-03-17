@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 09:41:08 by craffate          #+#    #+#             */
-/*   Updated: 2016/12/03 17:02:55 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/17 10:54:39 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/17 10:57:55 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_wordscounter(char const *s, char c)
+static unsigned int	wordscounter(const char *s, const char c)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -29,7 +29,7 @@ static size_t	ft_wordscounter(char const *s, char c)
 	return (i);
 }
 
-static char		*ft_elements(char const *s, char c, unsigned int *i)
+static char			*elements(const char *s, const char c, unsigned int *i)
 {
 	char			*w;
 	unsigned int	j;
@@ -49,7 +49,7 @@ static char		*ft_elements(char const *s, char c, unsigned int *i)
 	return (w);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char				**ft_strsplit(char const *s, const char c)
 {
 	char			**arr;
 	unsigned int	words;
@@ -58,7 +58,7 @@ char			**ft_strsplit(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	words = ft_wordscounter(s, c);
+	words = wordscounter(s, c);
 	if (!(arr = (char **)malloc(sizeof(char *) * (words + 1))))
 		return (NULL);
 	i = 0;
@@ -67,7 +67,7 @@ char			**ft_strsplit(char const *s, char c)
 		i++;
 	while (j < words && s[i])
 	{
-		arr[j] = ft_elements(s, c, &i);
+		arr[j] = elements(s, c, &i);
 		j++;
 	}
 	arr[j] = NULL;

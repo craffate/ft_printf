@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_stackisfull.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/15 14:04:00 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/15 14:05:24 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:20:40 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 14:42:18 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+int		ft_stackisfull(const t_stack stack)
 {
-	if (alst && (*alst)->next)
-		ft_lstdel(&(*alst)->next, del);
-	ft_lstdelone(alst, del);
-	*alst = NULL;
+	return (!(stack.head < stack.si) ? 1 : 0);
 }

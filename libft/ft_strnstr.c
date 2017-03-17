@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 10:54:30 by craffate          #+#    #+#             */
-/*   Updated: 2016/12/03 16:59:28 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/17 10:45:27 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/17 10:48:28 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wcast-qual"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *s1, const char *s2, size_t si)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -20,23 +22,24 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t			l;
 
 	i = 0;
-	j = 0;
-	if (!little[0])
-		return ((char *)big);
-	l = ft_strlen(little);
-	while (big[i] && len >= l)
+	if (!s2)
+		return ((char *)s1);
+	l = ft_strlen(s2);
+	while (s1[i] && si >= l)
 	{
 		j = 0;
 		k = i;
-		while (big[k] == little[j])
+		while (s1[j] == s2[j])
 		{
 			j++;
 			k++;
-			if (little[j] == '\0')
-				return (&((char *)big)[i]);
+			if (!s2[j])
+				return (&((char *)s1)[i]);
 		}
 		i++;
-		len--;
+		si--;
 	}
 	return (NULL);
 }
+
+#pragma clang diagnostic pop

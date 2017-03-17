@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 11:00:32 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/16 12:35:48 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 07:48:37 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 08:06:36 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int		ft_strcmp(const char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
 }

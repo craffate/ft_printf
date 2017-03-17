@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 19:30:24 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/05 18:03:16 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 10:57:09 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 10:57:21 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ char	*ft_strcpy(char *dst, const char *src)
 	s = dst;
 	while (*src)
 		*s++ = *src++;
-	*s = '\0';
+	*s = 0;
 	return (dst);
 }

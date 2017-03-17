@@ -6,15 +6,15 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/03 09:33:02 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/16 16:09:47 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:09:53 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int			ft_memfinder(const char *format)
+static unsigned int	ft_memfinder(const char *format)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	if (*format == '*')
@@ -43,7 +43,7 @@ static const char	*ft_parsewi(int *arr, const char *format, va_list ap,
 	while (ft_isdigit(*format))
 		tmp[i++] = *format++;
 	tmp[i] = '\0';
-	arr[1] = *tmp ? ft_atoi(tmp) : arr[1];
+	arr[1] = *tmp ? (int)ft_atoi(tmp) : arr[1];
 	free(tmp);
 	return (format);
 }
@@ -68,7 +68,7 @@ static const char	*ft_parsepr(int *arr, const char *format, va_list ap)
 	while (ft_isdigit(*format))
 		tmp[i++] = *format++;
 	tmp[i] = '\0';
-	arr[2] = *tmp ? ft_atoi(tmp) : arr[2];
+	arr[2] = *tmp ? (int)ft_atoi(tmp) : arr[2];
 	free(tmp);
 	return (format);
 }
@@ -111,7 +111,7 @@ const char			*ft_parse(int *arr, const char *format, va_list ap)
 		else
 			format++;
 	i |= (arr[1] < 0 && j == 1) ? MINUS : i;
-	arr[0] = i;
+	arr[0] = (int)i;
 	arr[1] = (arr[1] < 0 && j == 1) ? arr[1] * -1 : arr[1];
 	return (format);
 }

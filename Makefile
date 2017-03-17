@@ -95,9 +95,9 @@ PF_OBJS		=	$(addprefix srcs/, $(PF_SRCS:.c=.o))
 
 INCS		=	./includes
 
-CC			=	gcc
+CC			=	clang
 
-FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Weverything -Werror -pedantic
 
 CNONE		=	\x1b[0m
 CGREEN		=	\x1b[32m
@@ -106,25 +106,18 @@ CWHITE		=	\x1b[97m
 all: $(NAME)
 
 $(NAME): $(OBJS) $(PF_OBJS)
-	@echo "$(CGREEN)[Started compilation process]$(CNONE)"
-	@ar -rc $(NAME) $(OBJS) $(PF_OBJS)
-	@echo "$(CGREEN)[Indexing lib]$(CNONE)"
-	@ranlib $(NAME)
+	ar -rcs $(NAME) $(OBJS) $(PF_OBJS)
 
 libft/%.o: libft/%.c
-	@echo "$(CGREEN)[Converting $(CWHITE)$@$(CGREEN) to object file]$(CNONE)"
-	@$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
+	$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
 
 srcs/%.o: srcs/%.c
-	@echo "$(CGREEN)[Converting $(CWHITE)$@$(CGREEN) to object file]$(CNONE)"
-	@$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
+	$(CC) $(FLAGS) -I$(INCS) -o $@ -c $<
 
 clean:
-	@echo "$(CGREEN)[Performing clean]$(CNONE)"
-	@rm -f $(OBJS) $(PF_OBJS)
+	rm -f $(OBJS) $(PF_OBJS)
 
 fclean: clean
-	@echo "$(CGREEN)[Performing full clean]$(CNONE)"
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all

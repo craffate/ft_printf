@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_stackrrotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/15 14:04:00 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/15 14:05:24 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:31:14 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 14:41:22 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void	ft_stackrrotate(t_stack *stack)
 {
-	if (alst && (*alst)->next)
-		ft_lstdel(&(*alst)->next, del);
-	ft_lstdelone(alst, del);
-	*alst = NULL;
+	int		i;
+	size_t	j;
+
+	if (stack->head < 2)
+		return ;
+	i = stack->data[0];
+	j = -1u;
+	while (++j < stack->head - 1)
+		stack->data[j] = stack->data[j + 1];
+	stack->data[stack->head - 1] = i;
 }

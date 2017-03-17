@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 22:22:42 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/09 18:30:58 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 08:00:37 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 09:35:03 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, const size_t si)
 {
-	size_t		i;
-	size_t		j;
-	size_t		k;
+	unsigned int	i;
+	unsigned int	j;
+	size_t			k;
 
 	i = 0;
 	j = 0;
 	k = ft_strlen(src);
-	while (dst[i] && i < size)
+	while (dst[i] && i < si)
 		i++;
-	if (size > 0)
-	{
-		while (src[j] && i < size - 1)
+	if (si > 0)
+		while (src[j] && i < si - 1)
 			dst[i++] = src[j++];
-	}
 	if (j > 0)
 	{
-		dst[i] = '\0';
+		dst[i] = 0;
 		return (k + i - j);
 	}
 	return (k + i);

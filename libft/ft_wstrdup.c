@@ -5,26 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 09:22:07 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 15:30:27 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 09:29:22 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 09:31:11 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-wchar_t	*ft_wstrdup(const wchar_t *s1)
+wchar_t	*ft_wstrdup(const wchar_t *s)
 {
 	unsigned int	i;
-	wchar_t			*arr;
+	wchar_t			*s2;
 
-	i = 0;
-	if (!(arr = (wchar_t *)malloc(sizeof(wchar_t) * ft_wstrlen(s1) + 1)))
+	if (!(s2 = (wchar_t *)malloc(sizeof(wchar_t) * ft_wstrlen(s) + 1)))
 		return (NULL);
-	while (s1[i])
-	{
-		arr[i] = s1[i];
-		i++;
-	}
-	arr[i] = '\0';
-	return (arr);
+	i = -1u;
+	while (s[++i])
+		s2[i] = s[i];
+	s2[i] = 0;
+	return (s2);
 }

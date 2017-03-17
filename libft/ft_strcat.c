@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 19:44:48 by craffate          #+#    #+#             */
-/*   Updated: 2016/12/03 16:56:47 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 06:03:50 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 09:34:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ char	*ft_strcat(char *s1, const char *s2)
 	i = ft_strlen(s1);
 	while (*s2)
 		s1[i++] = *s2++;
-	s1[i] = '\0';
-	return (*&s1);
+	s1[i] = 0;
+	return (s1);
 }

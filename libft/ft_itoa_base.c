@@ -5,37 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 19:36:34 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/10 07:37:48 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 09:15:59 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 15:22:48 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_getsize(int n, int b)
+static unsigned int	getsize(long long int *n, const int b)
 {
-	size_t size;
+	unsigned int	si;
+	long long int	n2;
 
-	size = 1;
-	while (n /= b)
-		size += 1;
-	return (size);
+	si = 1;
+	if (*n < 0)
+	{
+		si++;
+		*n *= -1;
+	}
+	n2 = *n;
+	while (n2 /= b)
+		si++;
+	return (si);
 }
 
-char			*ft_itoa_base(int n, int b)
+char				*ft_itoa_base(long long int n, const int b)
 {
-	char				*s;
-	size_t				len;
+	unsigned int	si;
+	char			*s;
+	short			sign;
 
-	len = ft_getsize(n, b);
-	if (!(s = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	s[len--] = 0;
-	while (n >= b)
+	if (!n)
+		return (NULL);
+	sign = n < 0 ? -1 : 0;
+	si = getsize(&n, b);
+	if (!(s = (char *)malloc(sizeof(char) * (si + 1))))
+		return (NULL);
+	s[si] = 0;
+	while (si--)
 	{
-		s[len--] = ("0123456789abcdef")[n % b];
+		s[si] = ("0123456789abcdef")[n % b];
 		n /= b;
 	}
-	s[len--] = ("0123456789abcdef")[n % b];
+	if (sign)
+		*s = 45;
 	return (s);
 }

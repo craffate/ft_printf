@@ -3,54 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/14 23:52:17 by craffate          #+#    #+#             */
-/*   Updated: 2016/12/03 16:52:31 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 07:52:03 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 08:09:55 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_getsize(int n)
+static unsigned int	getsize(long long int *n)
 {
-	size_t	size;
+	unsigned int	si;
+	long long int	n2;
 
-	size = 0;
-	if (n < 0)
+	si = 1;
+	if (*n < 0)
 	{
-		size++;
-		n *= -1;
+		si++;
+		*n *= -1;
 	}
-	while (n /= 10)
-		size++;
-	return (size);
+	n2 = *n;
+	while (n2 /= 10)
+		si++;
+	return (si);
 }
 
-char			*ft_itoa(int n)
+char				*ft_itoa(long long int n)
 {
-	size_t	i;
-	char	*s;
-	int		neg;
+	unsigned int	si;
+	char			*s;
+	short			sign;
 
-	neg = 0;
-	if (n == INT_MIN)
-		return (ft_strdup("-2147483648"));
-	i = ft_getsize(n) + 1;
-	if (!(s = (char *)(malloc(sizeof(char) * i + 1))))
+	if (!n)
 		return (NULL);
-	if (n < 0)
+	sign = n < 0 ? -1 : 0;
+	si = getsize(&n);
+	if (!(s = (char *)malloc(sizeof(char) * (si + 1))))
+		return (NULL);
+	s[si] = 0;
+	while (si--)
 	{
-		n *= -1;
-		neg = 1;
-	}
-	s[i] = '\0';
-	while (i--)
-	{
-		s[i] = n % 10 + 48;
+		s[si] = n % 10 + 48;
 		n /= 10;
 	}
-	if (neg)
-		s[0] = 45;
+	if (sign)
+		*s = 45;
 	return (s);
 }

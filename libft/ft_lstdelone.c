@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 21:24:02 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/16 22:03:06 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:05:47 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 15:23:14 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	del((*alst)->content, (*alst)->content_size);
+	del((*alst)->data, (*alst)->si);
 	free(*alst);
 	*alst = NULL;
 }

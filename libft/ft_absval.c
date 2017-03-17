@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_absval.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 02:24:50 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/15 02:27:23 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 08:23:33 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 08:24:38 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_absval(int n)
+#include "libft.h"
+
+int		ft_absval(const int n)
 {
-	return (n < 0 ? n *= -1 : n);
+	return (n < 0 ? n * -1 : n);
 }

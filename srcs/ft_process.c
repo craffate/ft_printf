@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 15:42:58 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/21 14:13:02 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:14:06 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static wchar_t	*ft_width(wchar_t *s, const char spe, int *arr)
 {
 	wchar_t	*s2;
 
-	s2 = ft_wstrnew(ft_wstrlen(s) + arr[1] + 2);
+	s2 = ft_wstrnew(ft_wstrlen(s) + (size_t)arr[1] + 2);
 	if ((!(arr[0] & ZERO) || arr[0] & MINUS) || arr[2] != -2)
 	{
 		if (!(arr[0] & MINUS))

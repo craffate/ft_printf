@@ -6,11 +6,14 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:40:04 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 07:24:18 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:16:13 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
+#pragma clang diagnostic ignored "-Wsign-conversion"
 
 size_t			ft_extrabits(const wchar_t *s)
 {
@@ -100,3 +103,5 @@ wchar_t			*ft_strtowstr(char *s)
 		s2[i++] = *s++;
 	return (s2);
 }
+
+#pragma clang diagnostic pop

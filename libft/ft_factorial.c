@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_factorial.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 02:27:53 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/15 02:31:54 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 08:32:37 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 08:41:41 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_factorial(int n)
-{
-	int	res;
+#include "libft.h"
 
-	res = 1;
-	if (n == 0)
-		return (res);
-	if (n < 0 || n > 12)
+long long int	ft_factorial(const int n)
+{
+	long long int	i;
+
+	if (n < 0 || n > 20)
 		return (0);
+	i = 1;
+	if (n == 0)
+		return (i);
 	if (n > 0)
-		res = n * ft_factorial(n - 1);
-	return (res);
+		i = n * ft_factorial(n - 1);
+	return (i);
 }

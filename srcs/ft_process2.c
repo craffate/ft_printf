@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 15:10:05 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/20 15:54:58 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:14:57 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static wchar_t	*ft_precision_ws(wchar_t *s, int *arr)
 	i = 0;
 	eb = 0;
 	s2 = NULL;
-	tmp = ft_wstrnew(arr[2]);
+	tmp = ft_wstrnew((size_t)arr[2]);
 	while (s[i])
 	{
 		eb += ft_extrabits_alt(s[i]);
@@ -45,7 +45,7 @@ static wchar_t	*ft_precision_s(wchar_t *s, int *arr)
 	wchar_t			*s2;
 	unsigned int	i;
 
-	s2 = ft_wstrnew(arr[2]);
+	s2 = ft_wstrnew((size_t)arr[2]);
 	i = 0;
 	while (arr[2]-- > 0)
 	{
@@ -60,7 +60,7 @@ static wchar_t	*ft_precision_int(wchar_t *s, int *arr)
 	wchar_t			*s2;
 	unsigned int	i;
 
-	s2 = ft_wstrnew(ft_wstrlen(s) + arr[2]);
+	s2 = ft_wstrnew(ft_wstrlen(s) + (size_t)arr[2]);
 	i = 0;
 	if ((arr[2] == 0 && *s != '0') || arr[2] != 0)
 	{
@@ -96,7 +96,7 @@ wchar_t			*ft_wwidth(wchar_t *s, int *arr, size_t eb)
 {
 	wchar_t	*s2;
 
-	s2 = ft_wstrnew(ft_wstrlen(s) + arr[1]);
+	s2 = ft_wstrnew(ft_wstrlen(s) + (size_t)arr[1]);
 	if ((!(arr[0] & ZERO) || arr[0] & MINUS) || arr[2] != -2)
 	{
 		if (!(arr[0] & MINUS))

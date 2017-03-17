@@ -6,11 +6,14 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 14:57:01 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/19 07:34:40 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:11:44 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
+#pragma clang diagnostic ignored "-Wsign-conversion"
 
 static wchar_t	*ft_preprocesspercent(void)
 {
@@ -110,3 +113,5 @@ wchar_t			*ft_preprocess(const char spe, va_list ap, int *arr, int *i)
 	free(tmp);
 	return (wtmp);
 }
+
+#pragma clang diagnostic pop
